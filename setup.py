@@ -21,15 +21,15 @@ def get_version():
 setup(
     name='unittest_helpers',
     version=get_version(),
-    description='Chainable, iterative interface to querying Elasticsearch',
+    description='Some helpers to automate routine stuff with tests',
     long_description=open(READMEFILE).read(),
     url='https://github.com/shidorama/test_helpers',
     author='S Z',
     license='BSD',
     packages=find_packages(),
     install_requires=[
-        'elasticsearch>=1.0',
-        'six'
+        'six',
+        ''
     ],
     include_package_data=True,
     classifiers=[
@@ -39,8 +39,8 @@ setup(
         # 'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
+        # 'Programming Language :: Python :: 2',
+        # 'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
