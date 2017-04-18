@@ -8,8 +8,8 @@ import abc
 class TestCaseWithFixtures(unittest.TestCase):
     __metaclass__ = abc.ABCMeta
 
-    def __init__(self):
-        self.__data = None
+    def __init__(self, methodName='runTest'):
+        super(TestCaseWithFixtures, self).__init__(methodName)
 
     def setUp(self):
         self.__load_fixtures()
