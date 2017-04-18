@@ -1,9 +1,10 @@
-import unittest
+import abc
 import inspect
-from json import load
 import os
 import re
-import abc
+import unittest
+from json import load
+
 
 class TestCaseWithFixtures(unittest.TestCase):
     __metaclass__ = abc.ABCMeta
@@ -12,9 +13,9 @@ class TestCaseWithFixtures(unittest.TestCase):
         super(TestCaseWithFixtures, self).__init__(methodName)
 
     def setUp(self):
-        self.__load_fixtures()
+        self._load_fixtures()
 
-    def __get_data(self):
+    def _get_data(self):
         """Provides fixture data for caller method
 
         :return: fixture data
@@ -25,12 +26,12 @@ class TestCaseWithFixtures(unittest.TestCase):
             return self.__data[caller_name]
         return {}
 
-    def __load_fixtures(self):
+    def _load_fixtures(self):
         """Loads fixtures from json file with the same name as current test file and puts it into __data property
 
         :return:
         """
-        filename = os.path.abspath(__file__)
+        filename = inspect.getfile(self.__class__)
         filename = re.sub('\.(py|pyc).*$', '', filename)
         try:
             with open('%s.json' % filename, 'r') as fp:
@@ -38,6 +39,3 @@ class TestCaseWithFixtures(unittest.TestCase):
         except IOError as e:
             print e
             self.__data = {}
-
-
-

@@ -1,7 +1,7 @@
 import os
 import re
-from setuptools import find_packages, setup
 
+from setuptools import find_packages, setup
 
 READMEFILE = "README.md"
 VERSIONFILE = os.path.join("unittest_helpers", "_version.py")
@@ -29,7 +29,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'six',
-        ''
+        'boto3'
     ],
     include_package_data=True,
     classifiers=[
@@ -47,5 +47,5 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Natural Language :: English',
-        ],
+    ],
 )
