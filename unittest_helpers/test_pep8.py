@@ -7,7 +7,7 @@ import pep8
 ignore_patterns = ['.git', '.idea']
 
 
-class PEPHelper(unittest.TestCase):
+class PEPHelper(object):
     files = []
 
     def test_pep8(self):
@@ -27,3 +27,6 @@ class PEPHelper(unittest.TestCase):
             if pattern in directory:
                 return True
         return False
+
+class TestPEP8(unittest.TestCase, PEPHelper):
+    pass
