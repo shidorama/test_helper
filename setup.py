@@ -29,7 +29,8 @@ setup(
     packages=find_packages(),
     install_requires=[
         'six',
-        'boto3'
+        'boto3',
+        'pep8'
     ],
     include_package_data=True,
     classifiers=[

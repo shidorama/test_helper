@@ -7,7 +7,7 @@ import pep8
 ignore_patterns = ['.git', '.idea']
 
 
-class TestPEP(unittest.TestCase):
+class PEPHelper(unittest.TestCase):
     files = []
 
     def test_pep8(self):
