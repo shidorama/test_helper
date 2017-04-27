@@ -37,5 +37,4 @@ class TestCaseWithFixtures(unittest.TestCase):
             with open('%s.json' % filename, 'r') as fp:
                 self.__data = load(fp)
         except IOError as e:
-            print e
             self.__data = {}
