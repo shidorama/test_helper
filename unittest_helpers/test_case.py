@@ -2,6 +2,7 @@ import abc
 import inspect
 import re
 import unittest
+import copy
 from json import load
 
 
@@ -12,6 +13,16 @@ class TestCaseWithFixtures(unittest.TestCase):
         super(TestCaseWithFixtures, self).__init__(method_name)
         self._load_fixtures()
 
+    @property
+    def data(self):
+        caller_name = inspect.stack()[1][3]
+        data = {}
+        if caller_name in self.__data:
+            data.update(copy.deepcopy(self.__data[caller_name]))
+        if 'common' in self.__data:
+            data.update(copy.deepcopy(self.__data['common']))
+        return data
+
     def _get_data(self):
         """Provides fixture data for caller method
 
@@ -19,9 +30,12 @@ class TestCaseWithFixtures(unittest.TestCase):
         :rtype: any
         """
         caller_name = inspect.stack()[1][3]
+        data = {}
         if caller_name in self.__data:
-            return self.__data[caller_name]
-        return {}
+            data.update(copy.deepcopy(self.__data[caller_name]))
+        if 'common' in self.__data:
+            data.update(copy.deepcopy(self.__data['common']))
+        return data
 
     def _load_fixtures(self):
         """Loads fixtures from json file with the same name as current test file and puts it into __data property
