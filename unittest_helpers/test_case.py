@@ -31,10 +31,10 @@ class TestCaseWithFixtures(unittest.TestCase):
         """
         caller_name = inspect.stack()[1][3]
         data = {}
-        if caller_name in self.__data:
-            data.update(copy.deepcopy(self.__data[caller_name]))
         if 'common' in self.__data:
             data.update(copy.deepcopy(self.__data['common']))
+        if caller_name in self.__data:
+            data.update(copy.deepcopy(self.__data[caller_name]))
         return data
 
     def _load_fixtures(self):
