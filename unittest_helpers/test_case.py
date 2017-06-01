@@ -33,15 +33,9 @@ class TestCaseWithFixtures(unittest.TestCase):
         :rtype: any
         """
         caller_name = inspect.stack()[1][3]
-        data = {}
-        if 'common' in self.__data:
-            data.update(copy.deepcopy(self.__data['common']))
         if caller_name in self.__data:
-            temp_data = copy.deepcopy(self.__data[caller_name])
-            if not isinstance(temp_data, dict):
-                return temp_data
-            data.update()
-        return data
+            return self.__data[caller_name]
+        return {}
 
     def _load_fixtures(self):
         """Loads fixtures from json file with the same name as current test file and puts it into __data property
