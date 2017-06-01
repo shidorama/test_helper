@@ -10,10 +10,7 @@ class TestCaseWithFixtures(unittest.TestCase):
 
     def __init__(self, method_name='runTest'):
         super(TestCaseWithFixtures, self).__init__(method_name)
-
-    @classmethod
-    def setUpClass(cls):
-        cls._load_fixtures()
+        self._load_fixtures()
 
     def _get_data(self):
         """Provides fixture data for caller method
@@ -26,16 +23,15 @@ class TestCaseWithFixtures(unittest.TestCase):
             return self.__data[caller_name]
         return {}
 
-    @classmethod
-    def _load_fixtures(cls):
+    def _load_fixtures(self):
         """Loads fixtures from json file with the same name as current test file and puts it into __data property
 
         :return:
         """
-        filename = inspect.getfile(cls.__class__)
+        filename = inspect.getfile(self.__class__)
         filename = re.sub('\.(py|pyc).*$', '', filename)
         try:
             with open('%s.json' % filename, 'r') as fp:
-                cls.__data = load(fp)
+                self.__data = load(fp)
         except IOError as e:
-            cls.__data = {}
+            self.__data = {}
