@@ -23,7 +23,7 @@ class TestCaseWithFixtures(unittest.TestCase):
             temp_data = copy.deepcopy(self.__data[caller_name])
             if not isinstance(temp_data, dict):
                 return temp_data
-            data.update()
+            data.update(temp_data)
         return data
 
     def _get_data(self):
