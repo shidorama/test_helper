@@ -17,10 +17,13 @@ class TestCaseWithFixtures(unittest.TestCase):
     def data(self):
         caller_name = inspect.stack()[1][3]
         data = {}
-        if caller_name in self.__data:
-            data.update(copy.deepcopy(self.__data[caller_name]))
         if 'common' in self.__data:
             data.update(copy.deepcopy(self.__data['common']))
+        if caller_name in self.__data:
+            temp_data = copy.deepcopy(self.__data[caller_name])
+            if not isinstance(temp_data, dict):
+                return temp_data
+            data.update()
         return data
 
     def _get_data(self):
@@ -34,7 +37,10 @@ class TestCaseWithFixtures(unittest.TestCase):
         if 'common' in self.__data:
             data.update(copy.deepcopy(self.__data['common']))
         if caller_name in self.__data:
-            data.update(copy.deepcopy(self.__data[caller_name]))
+            temp_data = copy.deepcopy(self.__data[caller_name])
+            if not isinstance(temp_data, dict):
+                return temp_data
+            data.update()
         return data
 
     def _load_fixtures(self):
